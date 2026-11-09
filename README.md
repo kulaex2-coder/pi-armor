@@ -2,7 +2,11 @@
 
 给 [Pi](https://github.com/badlogic/pi-mono) 的网页界面套一个本机窗口。打开就能用，不用再单独找浏览器；也可以换中间页的配色，并用语音听会话进度。
 
-![启动页：还没拉起网页时，窗口里显示名称、版本和启动参数](docs/images/home.png)
+![打开后的窗口。顶栏可以拖动和启动，中间是 Pi 的新会话页](docs/images/running.png)
+
+还没拉起网页时，窗口中间会先显示名称、版本和启动参数。
+
+![未启动时的窗口](docs/images/home.png)
 
 ## 能做什么
 
