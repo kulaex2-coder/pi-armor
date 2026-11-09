@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pi Armor</title>
+    <script>
+      document.documentElement.dataset.appearance = matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    </script>
+    <script type="module" src="/main.js?v=11"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div id="drag" class="topbar__drag">Pi Armor</div>
+      <div class="topbar__controls">
+        <button id="settings" class="topbar__btn" type="button" title="配置" aria-label="配置" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10.6 3.1V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.86 1 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+        <button id="power" class="topbar__btn" type="button" title="启动" aria-label="启动"></button>
+        <button type="button" class="topbar__btn topbar__minimize" title="最小化" aria-label="最小化">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        </button>
+        <button type="button" class="topbar__btn topbar__maximize" title="最大化" aria-label="最大化">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg>
+        </button>
+        <button type="button" class="topbar__btn topbar__close" title="关闭" aria-label="关闭">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="panel-web">
+      <section id="boot" class="boot" hidden>
+        <div class="boot__card">
+          <h1 id="boot-name">Pi Armor</h1>
+          <p id="boot-version" class="boot__version">版本</p>
+          <p id="boot-message" class="boot__message" role="status">正在检测启动参数…</p>
+          <dl id="boot-params"></dl>
+        </div>
+      </section>
+      <iframe id="ui" title="pi web simple"></iframe>
+    </main>
+
+    <section id="panel-settings" class="settings-page" hidden>
+      <aside class="settings-side" id="settings-side" aria-label="配置分类"></aside>
+      <div class="settings-stage">
+        <div class="settings-main" id="settings-main"></div>
+        <footer class="settings-foot">
+          <button id="settings-back" class="settings-btn" type="button">返回主界面</button>
+          <button id="settings-refresh" class="settings-btn settings-btn--ghost" type="button">刷新数据</button>
+          <span id="settings-hint" class="settings-hint">壳专用配置</span>
+        </footer>
+      </div>
+    </section>
+  </body>
+</html>

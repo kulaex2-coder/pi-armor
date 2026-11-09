@@ -1,0 +1,449 @@
+:root {
+  --topbar-height: 44px;
+  --space-2: 8px;
+  --space-4: 16px;
+  --font-sans: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-size-sm: 13px;
+  --font-weight-medium: 500;
+  --radius-md: 14px;
+  --transition-fast: 120ms ease;
+  --bg-base: #ffffff;
+  --bg-panel: #f4f4f4;
+  --bg-hover: rgba(0, 0, 0, 0.06);
+  --bg-active: #111111;
+  --text-primary: #111111;
+  --text-secondary: #333333;
+  --text-tertiary: #777777;
+  --border-default: #111111;
+  --border-soft: #d0d0d0;
+  --shadow-hard: #bdbdbd;
+  --accent-ink: #111111;
+  --accent-invert: #ffffff;
+}
+
+html[data-appearance="dark"] {
+  --bg-base: #0a0a0a;
+  --bg-panel: #141414;
+  --bg-hover: rgba(255, 255, 255, 0.08);
+  --bg-active: #f5f5f5;
+  --text-primary: #f5f5f5;
+  --text-secondary: #d6d6d6;
+  --text-tertiary: #9a9a9a;
+  --border-default: #f5f5f5;
+  --border-soft: #3a3a3a;
+  --shadow-hard: #2a2a2a;
+  --accent-ink: #f5f5f5;
+  --accent-invert: #0a0a0a;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font: var(--font-size-sm) / 1.5 var(--font-sans);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  min-height: var(--topbar-height);
+  padding: 0 0 0 var(--space-4);
+  border-bottom: 2px solid var(--border-soft);
+  background: var(--bg-base);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.topbar__drag {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  color: var(--text-secondary);
+}
+
+.topbar__controls {
+  display: flex;
+  align-items: stretch;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.topbar__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+}
+
+.topbar__btn svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.topbar__btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.topbar__btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.settings-page {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  background:
+    radial-gradient(900px 420px at 8% -10%, rgba(0, 0, 0, 0.04) 0%, transparent 55%),
+    radial-gradient(700px 360px at 95% -5%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
+    var(--bg-panel);
+}
+
+html[data-appearance="dark"] .settings-page {
+  background:
+    radial-gradient(900px 420px at 8% -10%, rgba(255, 255, 255, 0.04) 0%, transparent 55%),
+    radial-gradient(700px 360px at 95% -5%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    var(--bg-panel);
+}
+
+.settings-page[hidden] {
+  display: none !important;
+}
+
+.settings-side {
+  width: 196px;
+  flex-shrink: 0;
+  padding: 14px 12px;
+  border-right: 2px solid var(--border-soft);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--bg-base);
+}
+
+.settings-side .cap {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  padding: 10px 10px 4px;
+}
+
+.settings-side .cap:first-child {
+  padding-top: 2px;
+}
+
+.settings-side button {
+  text-align: left;
+  border: 2px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 9px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.settings-side button:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.settings-side button.on {
+  background: var(--bg-active);
+  color: var(--accent-invert);
+  border-color: var(--accent-ink);
+}
+
+.settings-stage {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-main {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 20px 24px 24px;
+}
+
+.settings-main h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.settings-main .sub {
+  margin: 0 0 16px;
+  color: var(--text-tertiary);
+}
+
+.settings-sec {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  margin: 20px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-sec::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--border-soft);
+}
+
+.settings-sec:first-of-type {
+  margin-top: 0;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  border: 2px solid var(--border-soft);
+  border-radius: 16px;
+  background: var(--bg-base);
+  margin-bottom: 8px;
+  box-shadow: 0 3px 0 0 var(--shadow-hard);
+}
+
+.settings-lab strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.settings-lab span {
+  display: block;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+  word-break: break-all;
+}
+
+.settings-value {
+  max-width: 58%;
+  text-align: right;
+  color: var(--text-secondary);
+  word-break: break-all;
+}
+
+.settings-select,
+.settings-action {
+  min-width: 140px;
+  min-height: 30px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.settings-action {
+  cursor: pointer;
+  padding: 0 12px;
+}
+
+.settings-action:hover {
+  background: var(--bg-hover);
+}
+
+.settings-sw {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid var(--border-default);
+  background: var(--bg-hover);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.settings-sw::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--border-default);
+  transition: left 0.18s ease;
+}
+
+.settings-sw.on {
+  background: var(--accent-ink);
+  border-color: var(--accent-ink);
+}
+
+.settings-sw.on::after {
+  left: 22px;
+  background: var(--accent-invert);
+  border-color: transparent;
+}
+
+.settings-note {
+  margin: 12px 0 0;
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+.settings-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 2px solid var(--border-soft);
+  background: var(--bg-base);
+}
+
+.settings-btn {
+  min-height: 34px;
+  padding: 0 16px;
+  border: 2px solid var(--accent-ink);
+  border-radius: 14px;
+  background: var(--accent-ink);
+  color: var(--accent-invert);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 0 0 var(--shadow-hard);
+}
+
+.settings-btn--ghost {
+  background: transparent;
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
+.settings-btn--ghost:hover {
+  background: var(--bg-hover);
+}
+
+.settings-hint {
+  margin-left: auto;
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+body.settings-open #panel-web {
+  display: none;
+}
+
+.topbar__close:hover {
+  background: #e81123;
+  color: #ffffff;
+}
+
+.topbar__close:active {
+  background: #c50f1e;
+}
+
+#panel-web {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg-base);
+}
+
+#boot,
+#ui {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#boot {
+  z-index: 1;
+  background: var(--bg-base);
+}
+
+#boot[hidden] {
+  display: none !important;
+}
+
+#ui {
+  z-index: 0;
+}
+
+.boot {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.boot__card {
+  width: min(440px, 100%);
+}
+
+.boot h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.boot__version,
+.boot__message {
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+}
+
+.boot dl {
+  margin: 18px 0 0;
+}
+
+.boot dt {
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+.boot dd {
+  margin: 2px 0 12px;
+  word-break: break-all;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--bg-base);
+}

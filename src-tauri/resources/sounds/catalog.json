@@ -1,0 +1,38 @@
+[
+  {
+    "id": "soft-chime",
+    "title": "柔和双音",
+    "file": "done.wav"
+  },
+  {
+    "id": "bright-ding",
+    "title": "清脆单响",
+    "file": "done.wav"
+  },
+  {
+    "id": "deep-thud",
+    "title": "低沉一击",
+    "file": "done.wav"
+  },
+  {
+    "id": "rising-success",
+    "title": "上行三音",
+    "file": "done.wav"
+  },
+  {
+    "id": "glass-tap",
+    "title": "玻璃轻点",
+    "file": "done.wav"
+  },
+  {
+    "id": "wood-click",
+    "title": "木击短音",
+    "file": "done.wav"
+  },
+  {
+    "id": "edge-zh-xiaoxiao",
+    "title": "Edge 语音 · 晓晓",
+    "file": "done.wav",
+    "kind": "voice"
+  }
+]

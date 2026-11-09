@@ -1,0 +1,63 @@
+/* 新中式 */
+/* 2026 流行色玉青，配月白和一点胭脂。 */
+/* pi-armor-theme */
+html body,
+html[data-appearance="dark"] body {
+  --dsw-static-neutral-bluish-00: #F7FBFA;
+  --dsw-static-neutral-bluish-50: #D5E3DE;
+  --dsw-static-neutral-bluish-60: #E4EEEA;
+  --dsw-static-neutral-bluish-75: #E4EEEA;
+  --dsw-static-neutral-bluish-100: #C5D5CF;
+  --dsw-static-neutral-bluish-150: #C5D5CF;
+  --dsw-static-neutral-bluish-200: #6D7C78;
+  --dsw-static-neutral-bluish-400: #6D7C78;
+  --dsw-static-neutral-bluish-600: #6D7C78;
+  --dsw-static-neutral-bluish-700: #425066;
+  --dsw-static-neutral-bluish-1000: #425066;
+  --dsw-alias-bg-base: #ECF1EF;
+  --dsw-alias-bg-layer-1: #F7FBFA;
+  --dsw-alias-bg-layer-2: #F7FBFA;
+  --dsw-alias-bg-layer-3: #E4EEEA;
+  --dsw-alias-bg-input: #F7FBFA;
+  --dsw-alias-label-primary: #425066;
+  --dsw-alias-label-secondary: #6D7C78;
+  --dsw-alias-label-tertiary: #6D7C78;
+  --dsw-alias-label-primary-foreground: #F7FBFA;
+  --dsw-alias-label-primary-inverted: #F7FBFA;
+  --dsw-alias-brand-primary: #9D2933;
+  --dsw-alias-brand-primary-new-colorprimary-new-color: #9D2933;
+  --dsw-alias-border-l2: #C5D5CF;
+  --dsw-alias-border-l3: #C5D5CF;
+  --dsw-alias-button-elevated-fill: #F7FBFA;
+  --dsw-alias-button-primary-fill: #9D2933;
+  --dsw-alias-button-primary-hover: #9D2933;
+  --dsw-alias-interactive-bg-hover: #A9C6BE;
+  --dsw-alias-interactive-bg-active: #A9C6BE;
+  --dsw-specific-sidebar-fill: #D5E3DE;
+  --dsw-specific-sidebar-nav-item-hover: #A9C6BE;
+  --dsw-specific-sidebar-nav-item-active: #A9C6BE;
+  --dsw-specific-input-major: #F7FBFA;
+  --dsw-specific-menu: #F7FBFA;
+  --dsw-radius-md: 22px;
+  --dsw-radius-lg: 30px;
+  --dsw-elevation-soft: 0 5px 0 #C9D8D2;
+}
+html [class*="_sidebar_"],
+html[data-appearance="dark"] [class*="_sidebar_"] {
+  background: #D5E3DE !important;
+  color: #425066;
+  border-right-color: #C5D5CF !important;
+}
+html [class*="_newSession_"] {
+  border-radius: 999px !important;
+  background: #9D2933 !important;
+  color: #F7FBFA !important;
+  border-color: #9D2933 !important;
+}
+html [class*="_projectRow_"] { border-radius: 999px !important; }
+html [class*="_projectRowCurrent_"] { background: #A9C6BE !important; }
+html [class*="_composer_"] {
+  border-radius: 28px !important;
+  background: #F7FBFA !important;
+  box-shadow: 0 5px 0 #C9D8D2 !important;
+}

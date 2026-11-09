@@ -1,0 +1,118 @@
+/* 动物森友会 */
+/* 公开的动物森友会界面配色。 */
+/* pi-armor-theme */
+html body,
+html[data-appearance="dark"] body {
+  --dsw-static-neutral-bluish-00: #fffbed;
+  --dsw-static-neutral-bluish-50: #e7f2df;
+  --dsw-static-neutral-bluish-60: #f4ecda;
+  --dsw-static-neutral-bluish-75: #efe4cf;
+  --dsw-static-neutral-bluish-100: #e7dcc4;
+  --dsw-static-neutral-bluish-150: #e0d3bc;
+  --dsw-static-neutral-bluish-200: #c4b89e;
+  --dsw-static-neutral-bluish-300: #b5a48c;
+  --dsw-static-neutral-bluish-400: #9f927d;
+  --dsw-static-neutral-bluish-500: #8a7b66;
+  --dsw-static-neutral-bluish-600: #8a7b66;
+  --dsw-static-neutral-bluish-700: #725d42;
+  --dsw-static-neutral-bluish-750: #5c4a38;
+  --dsw-static-neutral-bluish-800: #4a3b2d;
+  --dsw-static-neutral-bluish-850: #3d3228;
+  --dsw-static-neutral-bluish-875: #342b23;
+  --dsw-static-neutral-bluish-900: #2c241e;
+  --dsw-static-neutral-bluish-950: #261f1a;
+  --dsw-static-neutral-bluish-1000: #725d42;
+
+  --dsw-alias-bg-base: #f7f3df;
+  --dsw-alias-bg-layer-1: #fffbed;
+  --dsw-alias-bg-layer-2: #fffbed;
+  --dsw-alias-bg-layer-3: #fff8e8;
+  --dsw-alias-bg-module-platform: #f4ecda;
+  --dsw-alias-bg-overlay: #e8e0d0;
+  --dsw-alias-bg-input: #fffbed;
+
+  --dsw-alias-label-primary: #725d42;
+  --dsw-alias-label-primary-dimmed: #794f27;
+  --dsw-alias-label-secondary: #8a7b66;
+  --dsw-alias-label-tertiary: #9f927d;
+  --dsw-alias-label-caption: #9f927d;
+  --dsw-alias-label-primary-foreground: #fffbed;
+  --dsw-alias-label-primary-inverted: #fffbed;
+  --dsw-alias-brand-text: #1f526e;
+  --dsw-alias-brand-primary: #34a09c;
+  --dsw-alias-brand-primary-invert: #fffbed;
+  --dsw-alias-brand-primary-new-colorprimary-new-color: #34a09c;
+
+  --dsw-alias-border-l1: #eadfcd;
+  --dsw-alias-border-l2: #e0d3bc;
+  --dsw-alias-border-l2-darkmode-thin: #e0d3bc;
+  --dsw-alias-border-l3: #c4b89e;
+  --dsw-alias-border-l4: #a89878;
+
+  --dsw-alias-button-elevated-fill: #fffbed;
+  --dsw-alias-button-floating-fill: #fffbed;
+  --dsw-alias-button-floating-hover: #f4ecda;
+  --dsw-alias-button-primary-fill: #34a09c;
+  --dsw-alias-button-primary-hover: #3db0a8;
+  --dsw-alias-button-primary-dimmed: #d7f3f1;
+  --dsw-alias-button-contrast-fill: #937c60;
+  --dsw-alias-button-info-fill: #34a09c;
+  --dsw-alias-button-info-hover: #3db0a8;
+
+  --dsw-alias-interactive-bg-hover: #d6dff0;
+  --dsw-alias-interactive-bg-active: #b7c6e5;
+  --dsw-alias-interactive-bg-hover-accent: #b7c6e5;
+  --dsw-alias-interactive-bg-hover-solid: #f4ecda;
+
+  --dsw-specific-sidebar-fill: #e7f2df;
+  --dsw-specific-sidebar-nav-item-hover: #d6dff0;
+  --dsw-specific-sidebar-nav-item-active: #b7c6e5;
+  --dsw-specific-sidebar-nav-item-active-accent: #34a09c;
+  --dsw-specific-input-major: #fffbed;
+  --dsw-specific-menu: #fffbed;
+  --dsw-specific-selector: #f4ecda;
+  --dsw-specific-bubble: #e6f9f6;
+  --dsw-specific-bubble-highlight: #d7f3f1;
+  --dsw-specific-tip: #fff8e8;
+
+  --dsw-alias-state-success-primary: #6fba2c;
+  --dsw-alias-state-warn-primary: #f5c31c;
+  --dsw-alias-state-error-primary: #e05a5a;
+
+  --dsw-radius-xs: 10px;
+  --dsw-radius-sm: 16px;
+  --dsw-radius-md: 22px;
+  --dsw-radius-lg: 30px;
+  --dsw-radius-xl: 32px;
+  --dsw-radius-panel: 32px;
+  --dsw-elevation-soft: 0 5px 0 #d4c9b4;
+}
+
+html [class*="_sidebar_"],
+html[data-appearance="dark"] [class*="_sidebar_"] {
+  background: linear-gradient(180deg, #f4fbe9 0%, #e7f2df 42%, #e7f2df 100%) !important;
+  color: #725d42;
+  border-right-color: #c4b89e !important;
+}
+
+html [class*="_newSession_"] {
+  border-radius: 999px !important;
+  background: #34a09c !important;
+  color: #fffbed !important;
+  border-color: #2d8f8b !important;
+  box-shadow: 0 4px 0 #21756c;
+}
+
+html [class*="_projectRow_"] {
+  border-radius: 999px !important;
+}
+
+html [class*="_projectRowCurrent_"] {
+  background: #b7c6e5 !important;
+}
+
+html [class*="_composer_"] {
+  border-radius: 30px !important;
+  background: #fffbed !important;
+  box-shadow: 0 5px 0 #d4c9b4 !important;
+}

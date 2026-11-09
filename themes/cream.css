@@ -1,0 +1,63 @@
+/* 奶油风 */
+/* 小红书家居生活里最常见的低饱和暖米色。 */
+/* pi-armor-theme */
+html body,
+html[data-appearance="dark"] body {
+  --dsw-static-neutral-bluish-00: #FBF6F0;
+  --dsw-static-neutral-bluish-50: #E8DFD3;
+  --dsw-static-neutral-bluish-60: #EFE6DA;
+  --dsw-static-neutral-bluish-75: #EFE6DA;
+  --dsw-static-neutral-bluish-100: #DDD0C2;
+  --dsw-static-neutral-bluish-150: #DDD0C2;
+  --dsw-static-neutral-bluish-200: #8A7B6E;
+  --dsw-static-neutral-bluish-400: #8A7B6E;
+  --dsw-static-neutral-bluish-600: #8A7B6E;
+  --dsw-static-neutral-bluish-700: #4A4038;
+  --dsw-static-neutral-bluish-1000: #4A4038;
+  --dsw-alias-bg-base: #F7F3EC;
+  --dsw-alias-bg-layer-1: #FBF6F0;
+  --dsw-alias-bg-layer-2: #FBF6F0;
+  --dsw-alias-bg-layer-3: #EFE6DA;
+  --dsw-alias-bg-input: #FBF6F0;
+  --dsw-alias-label-primary: #4A4038;
+  --dsw-alias-label-secondary: #8A7B6E;
+  --dsw-alias-label-tertiary: #8A7B6E;
+  --dsw-alias-label-primary-foreground: #FFFBF6;
+  --dsw-alias-label-primary-inverted: #FFFBF6;
+  --dsw-alias-brand-primary: #C8A98A;
+  --dsw-alias-brand-primary-new-colorprimary-new-color: #C8A98A;
+  --dsw-alias-border-l2: #DDD0C2;
+  --dsw-alias-border-l3: #DDD0C2;
+  --dsw-alias-button-elevated-fill: #FBF6F0;
+  --dsw-alias-button-primary-fill: #C8A98A;
+  --dsw-alias-button-primary-hover: #C8A98A;
+  --dsw-alias-interactive-bg-hover: #E4D3C4;
+  --dsw-alias-interactive-bg-active: #E4D3C4;
+  --dsw-specific-sidebar-fill: #E8DFD3;
+  --dsw-specific-sidebar-nav-item-hover: #E4D3C4;
+  --dsw-specific-sidebar-nav-item-active: #E4D3C4;
+  --dsw-specific-input-major: #FBF6F0;
+  --dsw-specific-menu: #FBF6F0;
+  --dsw-radius-md: 22px;
+  --dsw-radius-lg: 30px;
+  --dsw-elevation-soft: 0 5px 0 #E4D3C4;
+}
+html [class*="_sidebar_"],
+html[data-appearance="dark"] [class*="_sidebar_"] {
+  background: #E8DFD3 !important;
+  color: #4A4038;
+  border-right-color: #DDD0C2 !important;
+}
+html [class*="_newSession_"] {
+  border-radius: 999px !important;
+  background: #C8A98A !important;
+  color: #FFFBF6 !important;
+  border-color: #C8A98A !important;
+}
+html [class*="_projectRow_"] { border-radius: 999px !important; }
+html [class*="_projectRowCurrent_"] { background: #E4D3C4 !important; }
+html [class*="_composer_"] {
+  border-radius: 28px !important;
+  background: #FBF6F0 !important;
+  box-shadow: 0 5px 0 #E4D3C4 !important;
+}

@@ -1,0 +1,63 @@
+/* 粉彩风 */
+/* 2026 小红书增长很快的柔和粉彩，颜色像混在一起。 */
+/* pi-armor-theme */
+html body,
+html[data-appearance="dark"] body {
+  --dsw-static-neutral-bluish-00: #FFF8FB;
+  --dsw-static-neutral-bluish-50: #F3E0EA;
+  --dsw-static-neutral-bluish-60: #F7E7EF;
+  --dsw-static-neutral-bluish-75: #F7E7EF;
+  --dsw-static-neutral-bluish-100: #E7CDD8;
+  --dsw-static-neutral-bluish-150: #E7CDD8;
+  --dsw-static-neutral-bluish-200: #A07B8C;
+  --dsw-static-neutral-bluish-400: #A07B8C;
+  --dsw-static-neutral-bluish-600: #A07B8C;
+  --dsw-static-neutral-bluish-700: #6A4E5B;
+  --dsw-static-neutral-bluish-1000: #6A4E5B;
+  --dsw-alias-bg-base: #F8F1F6;
+  --dsw-alias-bg-layer-1: #FFF8FB;
+  --dsw-alias-bg-layer-2: #FFF8FB;
+  --dsw-alias-bg-layer-3: #F7E7EF;
+  --dsw-alias-bg-input: #FFF8FB;
+  --dsw-alias-label-primary: #6A4E5B;
+  --dsw-alias-label-secondary: #A07B8C;
+  --dsw-alias-label-tertiary: #A07B8C;
+  --dsw-alias-label-primary-foreground: #FFF8FB;
+  --dsw-alias-label-primary-inverted: #FFF8FB;
+  --dsw-alias-brand-primary: #E7A0B4;
+  --dsw-alias-brand-primary-new-colorprimary-new-color: #E7A0B4;
+  --dsw-alias-border-l2: #E7CDD8;
+  --dsw-alias-border-l3: #E7CDD8;
+  --dsw-alias-button-elevated-fill: #FFF8FB;
+  --dsw-alias-button-primary-fill: #E7A0B4;
+  --dsw-alias-button-primary-hover: #E7A0B4;
+  --dsw-alias-interactive-bg-hover: #F6D5E2;
+  --dsw-alias-interactive-bg-active: #F6D5E2;
+  --dsw-specific-sidebar-fill: #F3E0EA;
+  --dsw-specific-sidebar-nav-item-hover: #F6D5E2;
+  --dsw-specific-sidebar-nav-item-active: #F6D5E2;
+  --dsw-specific-input-major: #FFF8FB;
+  --dsw-specific-menu: #FFF8FB;
+  --dsw-radius-md: 22px;
+  --dsw-radius-lg: 30px;
+  --dsw-elevation-soft: 0 5px 0 #F0D0DC;
+}
+html [class*="_sidebar_"],
+html[data-appearance="dark"] [class*="_sidebar_"] {
+  background: #F3E0EA !important;
+  color: #6A4E5B;
+  border-right-color: #E7CDD8 !important;
+}
+html [class*="_newSession_"] {
+  border-radius: 999px !important;
+  background: #E7A0B4 !important;
+  color: #FFF8FB !important;
+  border-color: #E7A0B4 !important;
+}
+html [class*="_projectRow_"] { border-radius: 999px !important; }
+html [class*="_projectRowCurrent_"] { background: #F6D5E2 !important; }
+html [class*="_composer_"] {
+  border-radius: 28px !important;
+  background: #FFF8FB !important;
+  box-shadow: 0 5px 0 #F0D0DC !important;
+}

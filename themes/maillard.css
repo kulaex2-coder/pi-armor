@@ -1,0 +1,63 @@
+/* 美拉德 */
+/* 小红书秋冬一直很稳的焦糖咖啡色。 */
+/* pi-armor-theme */
+html body,
+html[data-appearance="dark"] body {
+  --dsw-static-neutral-bluish-00: #FBF3E8;
+  --dsw-static-neutral-bluish-50: #E4CDB4;
+  --dsw-static-neutral-bluish-60: #EEDCC6;
+  --dsw-static-neutral-bluish-75: #EEDCC6;
+  --dsw-static-neutral-bluish-100: #D7C0A4;
+  --dsw-static-neutral-bluish-150: #D7C0A4;
+  --dsw-static-neutral-bluish-200: #7C5E48;
+  --dsw-static-neutral-bluish-400: #7C5E48;
+  --dsw-static-neutral-bluish-600: #7C5E48;
+  --dsw-static-neutral-bluish-700: #3E2C1E;
+  --dsw-static-neutral-bluish-1000: #3E2C1E;
+  --dsw-alias-bg-base: #F3E6D4;
+  --dsw-alias-bg-layer-1: #FBF3E8;
+  --dsw-alias-bg-layer-2: #FBF3E8;
+  --dsw-alias-bg-layer-3: #EEDCC6;
+  --dsw-alias-bg-input: #FBF3E8;
+  --dsw-alias-label-primary: #3E2C1E;
+  --dsw-alias-label-secondary: #7C5E48;
+  --dsw-alias-label-tertiary: #7C5E48;
+  --dsw-alias-label-primary-foreground: #FBF3E8;
+  --dsw-alias-label-primary-inverted: #FBF3E8;
+  --dsw-alias-brand-primary: #7C5A3D;
+  --dsw-alias-brand-primary-new-colorprimary-new-color: #7C5A3D;
+  --dsw-alias-border-l2: #D7C0A4;
+  --dsw-alias-border-l3: #D7C0A4;
+  --dsw-alias-button-elevated-fill: #FBF3E8;
+  --dsw-alias-button-primary-fill: #7C5A3D;
+  --dsw-alias-button-primary-hover: #7C5A3D;
+  --dsw-alias-interactive-bg-hover: #C09B72;
+  --dsw-alias-interactive-bg-active: #C09B72;
+  --dsw-specific-sidebar-fill: #E4CDB4;
+  --dsw-specific-sidebar-nav-item-hover: #C09B72;
+  --dsw-specific-sidebar-nav-item-active: #C09B72;
+  --dsw-specific-input-major: #FBF3E8;
+  --dsw-specific-menu: #FBF3E8;
+  --dsw-radius-md: 22px;
+  --dsw-radius-lg: 30px;
+  --dsw-elevation-soft: 0 5px 0 #D7C0A4;
+}
+html [class*="_sidebar_"],
+html[data-appearance="dark"] [class*="_sidebar_"] {
+  background: #E4CDB4 !important;
+  color: #3E2C1E;
+  border-right-color: #D7C0A4 !important;
+}
+html [class*="_newSession_"] {
+  border-radius: 999px !important;
+  background: #7C5A3D !important;
+  color: #FBF3E8 !important;
+  border-color: #7C5A3D !important;
+}
+html [class*="_projectRow_"] { border-radius: 999px !important; }
+html [class*="_projectRowCurrent_"] { background: #C09B72 !important; }
+html [class*="_composer_"] {
+  border-radius: 28px !important;
+  background: #FBF3E8 !important;
+  box-shadow: 0 5px 0 #D7C0A4 !important;
+}

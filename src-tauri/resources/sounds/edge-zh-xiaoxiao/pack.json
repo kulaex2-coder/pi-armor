@@ -1,0 +1,80 @@
+{
+  "id": "edge-zh-xiaoxiao",
+  "title": "Edge 语音 · 晓晓",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "engine": "edge-tts",
+  "clips": [
+    {
+      "id": "session_start",
+      "text": "会话已开始",
+      "file": "session_start.wav",
+      "event": "session_start"
+    },
+    {
+      "id": "session_shutdown",
+      "text": "会话已结束",
+      "file": "session_shutdown.wav",
+      "event": "session_shutdown"
+    },
+    {
+      "id": "agent_start",
+      "text": "开始处理",
+      "file": "agent_start.wav",
+      "event": "agent_start"
+    },
+    {
+      "id": "agent_settled",
+      "text": "任务已完成",
+      "file": "agent_settled.wav",
+      "event": "agent_settled"
+    },
+    {
+      "id": "agent_aborted",
+      "text": "已中止",
+      "file": "agent_aborted.wav",
+      "event": "agent_aborted"
+    },
+    {
+      "id": "turn_start",
+      "text": "收到新消息",
+      "file": "turn_start.wav",
+      "event": "turn_start"
+    },
+    {
+      "id": "turn_end",
+      "text": "本轮回复完成",
+      "file": "turn_end.wav",
+      "event": "turn_end"
+    },
+    {
+      "id": "tool_call",
+      "text": "正在调用工具",
+      "file": "tool_call.wav",
+      "event": "tool_call"
+    },
+    {
+      "id": "tool_result",
+      "text": "工具已返回",
+      "file": "tool_result.wav",
+      "event": "tool_result"
+    },
+    {
+      "id": "tool_error",
+      "text": "工具执行失败",
+      "file": "tool_error.wav",
+      "event": "tool_error"
+    },
+    {
+      "id": "ui_prompt_start",
+      "text": "需要您确认",
+      "file": "ui_prompt_start.wav",
+      "event": "ui_prompt_start"
+    },
+    {
+      "id": "session_before_compact",
+      "text": "正在压缩上下文",
+      "file": "session_before_compact.wav",
+      "event": "session_before_compact"
+    }
+  ]
+}
