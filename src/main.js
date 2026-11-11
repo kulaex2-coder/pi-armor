@@ -3,6 +3,8 @@ const { invoke } = window.__TAURI__.core;
 const frame = document.querySelector("#ui");
 const boot = document.querySelector("#boot");
 const bootMessage = document.querySelector("#boot-message");
+const bootDeps = document.querySelector("#boot-deps");
+const bootInstall = document.querySelector("#boot-install");
 const powerBtn = document.querySelector("#power");
 const settingsBtn = document.querySelector("#settings");
 const panelSettings = document.querySelector("#panel-settings");
@@ -13,6 +15,7 @@ const settingsBack = document.querySelector("#settings-back");
 const settingsRefresh = document.querySelector("#settings-refresh");
 const maxBtn = document.querySelector(".topbar__maximize");
 const drag = document.querySelector("#drag");
+const dragTitle = document.querySelector("#drag-title");
 const AUTO_KEY = "pi-armor.autoStart";
 
 const iconPlay =
@@ -28,6 +31,7 @@ let running = false;
 let appearancePref = "system";
 let settingsOpen = false;
 let settingsTab = "notify";
+let depsReady = false;
 let snapshot = {
   info: null,
   web: null,
@@ -37,6 +41,7 @@ let snapshot = {
   appearance: "system",
   theme: null,
   content: null,
+  deps: null,
 };
 
 const NAV = [
@@ -116,6 +121,73 @@ function showWeb(state) {
   applyAppearance("system");
 }
 
+function renderDeps(deps) {
+  snapshot.deps = deps;
+  depsReady = !!deps.ready;
+  bootDeps.replaceChildren();
+  for (const item of deps.items || []) {
+    const li = document.createElement("li");
+    li.className = item.ok ? "ok" : "bad";
+    const mark = document.createElement("span");
+    mark.className = "mark";
+    mark.textContent = item.ok ? "✓" : "!";
+    const body = document.createElement("div");
+    const strong = document.createElement("strong");
+    strong.textContent = item.title;
+    const span = document.createElement("span");
+    span.textContent = item.detail || "";
+    body.append(strong, span);
+    li.append(mark, body);
+    bootDeps.append(li);
+  }
+  bootInstall.hidden = depsReady;
+  bootInstall.disabled = false;
+  bootInstall.textContent = "安装缺失依赖";
+  setBootMessage(
+    depsReady
+      ? "依赖已就绪。Web UI 还没启动时，点右上角图标开始。"
+      : deps.message || "有依赖未就绪。",
+  );
+  return deps;
+}
+
+async function loadDeps() {
+  return renderDeps(await invoke("deps_status"));
+}
+
+async function installDeps() {
+  const deps = snapshot.deps;
+  const names = (deps && deps.items ? deps.items : [])
+    .filter((item) => !item.ok)
+    .map((item) => item.title)
+    .join(" / ");
+  if (!names) {
+    await loadDeps();
+    return;
+  }
+  if (!window.confirm("确认安装缺失依赖？\n\n" + names + "\n\n不会自动安装，只有点确认后才会执行。")) {
+    return;
+  }
+  bootInstall.disabled = true;
+  bootInstall.textContent = "安装中…";
+  setBootMessage("正在安装缺失依赖，请稍候…");
+  try {
+    const result = await invoke("deps_install");
+    renderDeps(result.status);
+    setBootMessage(result.status.ready ? "依赖已装好。" : result.status.message);
+    await loadInfo();
+  } catch (err) {
+    bootInstall.disabled = false;
+    bootInstall.textContent = "安装缺失依赖";
+    setBootMessage(errText(err));
+    try {
+      await loadDeps();
+    } catch {
+      /* keep error message */
+    }
+  }
+}
+
 async function loadInfo() {
   const info = await invoke("launch_info");
   document.querySelector("#boot-name").textContent = info.name;
@@ -134,11 +206,16 @@ async function loadInfo() {
     dd.textContent = value;
     list.append(dt, dd);
   }
-  setBootMessage(info.commandOk ? "Web UI 还没启动。点右上角图标开始。" : info.command);
   return info;
 }
 
 async function start() {
+  if (!depsReady) {
+    showBoot();
+    setBootMessage("还有依赖未就绪，请先安装后再启动。");
+    setPower("off", "启动");
+    return;
+  }
   setPower("busy", "启动中");
   setBootMessage("正在启动…");
   showBoot();
@@ -260,7 +337,7 @@ function setHint(text) {
 }
 
 async function loadSnapshot() {
-  const [info, web, sound, webSettings, extensions, appearance, theme, content] = await Promise.all([
+  const [info, web, sound, webSettings, extensions, appearance, theme, content, deps] = await Promise.all([
     invoke("launch_info").catch((err) => ({ error: errText(err) })),
     invoke("web_status").catch((err) => ({ error: errText(err) })),
     invoke("sound_status").catch((err) => ({ error: errText(err) })),
@@ -269,8 +346,10 @@ async function loadSnapshot() {
     invoke("web_appearance").catch(() => "system"),
     invoke("theme_status").catch((err) => ({ error: errText(err), themes: [] })),
     invoke("content_status").catch((err) => ({ error: errText(err) })),
+    invoke("deps_status").catch((err) => ({ ready: false, items: [], missing: [], message: errText(err) })),
   ]);
-  snapshot = { info, web, sound, webSettings, extensions, appearance, theme, content };
+  snapshot = { info, web, sound, webSettings, extensions, appearance, theme, content, deps };
+  depsReady = !!(deps && deps.ready);
   return snapshot;
 }
 
@@ -580,13 +659,19 @@ function renderPaths() {
 
 function renderAbout() {
   const info = snapshot.info || {};
+  const deps = snapshot.deps || {};
   settingsMain.append(
     section("应用"),
     row("名称", "", textValue(info.name || "Pi Armor")),
     row("版本", "", textValue(info.version || "—")),
     row("当前外观", "", textValue(document.documentElement.dataset.appearance || "—")),
     row("网页外观偏好", "", textValue(snapshot.appearance || "—")),
+    section("运行依赖"),
+    row("依赖就绪", deps.message || "", textValue(deps.ready ? "是" : "否")),
   );
+  for (const item of deps.items || []) {
+    settingsMain.append(row(item.title, item.detail || "", textValue(item.ok ? "已就绪" : "缺失")));
+  }
 }
 
 function renderSettingsTab(id) {
@@ -637,7 +722,7 @@ async function openSettings() {
   document.body.classList.add("settings-open");
   panelSettings.hidden = false;
   settingsBtn.setAttribute("aria-pressed", "true");
-  drag.textContent = "Pi Armor · 配置";
+  dragTitle.textContent = "Pi Armor · 配置";
   setHint("正在读取数据…");
   try {
     await loadSnapshot();
@@ -653,7 +738,7 @@ function closeSettings() {
   document.body.classList.remove("settings-open");
   panelSettings.hidden = true;
   settingsBtn.setAttribute("aria-pressed", "false");
-  drag.textContent = "Pi Armor";
+  dragTitle.textContent = "Pi Armor";
 }
 
 function bindSettings() {
@@ -680,13 +765,16 @@ window.addEventListener("DOMContentLoaded", () => {
     if (running) stop();
     else start();
   });
+  bootInstall.addEventListener("click", () => {
+    installDeps();
+  });
   bindSettings();
   bindWindowControls();
   invoke("sound_bootstrap").catch(() => {});
   const revealBoot = setTimeout(() => {
     if (!running && !settingsOpen) showBoot();
   }, 700);
-  loadInfo()
+  Promise.all([loadInfo(), loadDeps()])
     .catch((err) => setBootMessage(errText(err)))
     .then(() => invoke("web_status"))
     .then((state) => {
@@ -696,7 +784,7 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
       }
       showBoot();
-      if (localStorage.getItem(AUTO_KEY) !== "0") start();
+      if (depsReady && localStorage.getItem(AUTO_KEY) !== "0") start();
     })
     .catch((err) => {
       clearTimeout(revealBoot);

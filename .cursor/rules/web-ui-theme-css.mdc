@@ -1,0 +1,52 @@
+---
+description: 内嵌 Web UI 的显示改动一律走主题 CSS，禁止用 JS/DOM 改样式
+alwaysApply: true
+---
+
+# Web UI 显示 = 主题 CSS
+
+内嵌 `pi-web-simple`（中间 iframe）的一切**显示/隐藏/配色/圆角**等视觉改动，只能通过主题样式控制。
+
+## 正确通道
+
+1. 改 `themes/*.css`（或文档目录 `Pi Armor/themes` 里的副本）
+2. 代理在 HTML `</head>` 前注入 `/__pi_armor/theme.css`（见 `src-tauri/src/proxy.rs`）
+3. 选择器用官方 CSS Module 片段：`html [class*="_token_"]`，需要时加 `!important`
+4. 换主题后前端 `reloadWeb()` 刷新 iframe
+
+壳顶栏（Pi Armor 自己的 icon / 标题 / 按钮）属于壳，用 `src/styles.css`，**不要**塞进 Web UI 主题。
+
+## 禁止
+
+- iframe 内 `evaluate` / 注入脚本改 DOM 来藏 logo、按钮、标题
+- 在 `src/main.js` 里按元素改内嵌页样式
+- 为单个显示需求改 `pi-web-simple` 上游源码
+
+## 示例
+
+```css
+/* ✅ 主题里隐藏 brand / 新会话 */
+html [class*="_brand_"],
+html [class*="_brandMark_"],
+html [class*="_brandName_"],
+html [class*="_newSession_"] {
+  display: none !important;
+}
+```
+
+```js
+// ❌ 不要对 iframe 文档动手脚
+frame.contentDocument.querySelector("...").remove();
+```
+
+若 `proxy.rs` 需附带全局 chrome 规则，也必须作为 **CSS 文本** 拼进 `theme_css()` 输出，不能改成 DOM 补丁。
+
+## 分区注释（人手改色用）
+
+主题 CSS 保持固定分区，别把规则揉成一坨：
+
+1. 文件头目录：`[令牌] [侧栏] [新会话] [项目行] [输入区]`
+2. 令牌块内再分子段（中性色 / 背景 / 文字 / 品牌 / 描边 / 按钮 / …）
+3. 每个控制元素块前一行：`/* --- [侧栏] … --- */`，并写明对应 `_token_`
+4. 壳样式 `src/styles.css` 分区：`[令牌] [顶栏] [配置页] [主面板] [启动页]`
+5. `CHROME_CSS` 按 `[壳强制·品牌区]` `[壳强制·新会话]` 注释

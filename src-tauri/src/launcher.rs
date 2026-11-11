@@ -104,9 +104,13 @@ fn find_bin() -> Result<PathBuf, String> {
     if let Some(path) = std::env::var_os("PATH") {
         dirs.extend(std::env::split_paths(&path));
     }
-    // ponytail: this machine's Volta/npm prefixes. Upgrade path: a settings file.
+    // ponytail: common local prefixes. Upgrade path: a settings file.
     dirs.push(PathBuf::from(r"C:\dev\volta\bin"));
     dirs.push(PathBuf::from(r"C:\dev\npm-global"));
+    dirs.push(PathBuf::from(r"C:\Program Files\nodejs"));
+    if let Ok(home) = std::env::var("USERPROFILE") {
+        dirs.push(PathBuf::from(home).join(".pi").join("agent").join("bin"));
+    }
     for dir in dirs {
         for name in ["pi-web-simple.cmd", "pi-web-simple.exe", "pi-web-simple"] {
             let candidate = dir.join(name);

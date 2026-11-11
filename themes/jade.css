@@ -1,8 +1,24 @@
-/* 新中式 */
-/* 2026 流行色玉青，配月白和一点胭脂。 */
-/* pi-armor-theme */
+/* ============================================================
+ * 主题：新中式
+ * 说明：2026 流行色玉青，配月白和一点胭脂。
+ * 标记：pi-armor-theme（代理扫描用，勿删）
+ * ------------------------------------------------------------
+ * 人手改色/改形时按分区找：
+ *   [令牌] 全局颜色/圆角/阴影（改一处影响整页）
+ *   [侧栏] _sidebar_ 左侧导航底板
+ *   [新会话] _newSession_ 侧栏「新会话」按钮（壳会再强制隐藏）
+ *   [项目行] _projectRow_ / _projectRowCurrent_ 会话/项目列表项
+ *   [输入区] _composer_ 底部输入框外壳
+ * 选择器一律：html [class*="_token_"]
+ * ============================================================ */
+
+/* ------------------------------------------------------------
+ * [令牌] Design tokens — 改这些变量即可换整体气质
+ *   static / alias / specific / radius / elevation
+ * ------------------------------------------------------------ */
 html body,
 html[data-appearance="dark"] body {
+  /* --- 令牌·中性色阶 --- */
   --dsw-static-neutral-bluish-00: #F7FBFA;
   --dsw-static-neutral-bluish-50: #D5E3DE;
   --dsw-static-neutral-bluish-60: #E4EEEA;
@@ -14,48 +30,66 @@ html[data-appearance="dark"] body {
   --dsw-static-neutral-bluish-600: #6D7C78;
   --dsw-static-neutral-bluish-700: #425066;
   --dsw-static-neutral-bluish-1000: #425066;
+  /* --- 令牌·背景层 --- */
   --dsw-alias-bg-base: #ECF1EF;
   --dsw-alias-bg-layer-1: #F7FBFA;
   --dsw-alias-bg-layer-2: #F7FBFA;
   --dsw-alias-bg-layer-3: #E4EEEA;
   --dsw-alias-bg-input: #F7FBFA;
+  /* --- 令牌·文字 --- */
   --dsw-alias-label-primary: #425066;
   --dsw-alias-label-secondary: #6D7C78;
   --dsw-alias-label-tertiary: #6D7C78;
   --dsw-alias-label-primary-foreground: #F7FBFA;
   --dsw-alias-label-primary-inverted: #F7FBFA;
+  /* --- 令牌·品牌色 --- */
   --dsw-alias-brand-primary: #9D2933;
   --dsw-alias-brand-primary-new-colorprimary-new-color: #9D2933;
+  /* --- 令牌·描边 --- */
   --dsw-alias-border-l2: #C5D5CF;
   --dsw-alias-border-l3: #C5D5CF;
+  /* --- 令牌·按钮 --- */
   --dsw-alias-button-elevated-fill: #F7FBFA;
   --dsw-alias-button-primary-fill: #9D2933;
   --dsw-alias-button-primary-hover: #9D2933;
+  /* --- 令牌·交互态 --- */
   --dsw-alias-interactive-bg-hover: #A9C6BE;
   --dsw-alias-interactive-bg-active: #A9C6BE;
+  /* --- 令牌·侧栏/气泡等专用 --- */
   --dsw-specific-sidebar-fill: #D5E3DE;
   --dsw-specific-sidebar-nav-item-hover: #A9C6BE;
   --dsw-specific-sidebar-nav-item-active: #A9C6BE;
   --dsw-specific-input-major: #F7FBFA;
   --dsw-specific-menu: #F7FBFA;
+  /* --- 令牌·圆角与阴影 --- */
   --dsw-radius-md: 22px;
   --dsw-radius-lg: 30px;
   --dsw-elevation-soft: 0 5px 0 #C9D8D2;
 }
+
+/* --- [侧栏] 左侧导航底板 --- */
 html [class*="_sidebar_"],
 html[data-appearance="dark"] [class*="_sidebar_"] {
   background: #D5E3DE !important;
   color: #425066;
   border-right-color: #C5D5CF !important;
 }
+
+/* --- [新会话] 侧栏新会话按钮（壳会再强制 display:none） --- */
 html [class*="_newSession_"] {
   border-radius: 999px !important;
   background: #9D2933 !important;
   color: #F7FBFA !important;
   border-color: #9D2933 !important;
 }
+
+/* --- [项目行] 普通会话/项目行 --- */
 html [class*="_projectRow_"] { border-radius: 999px !important; }
+
+/* --- [项目行·当前] 选中的会话/项目行 --- */
 html [class*="_projectRowCurrent_"] { background: #A9C6BE !important; }
+
+/* --- [输入区] 底部 composer 外壳 --- */
 html [class*="_composer_"] {
   border-radius: 28px !important;
   background: #F7FBFA !important;

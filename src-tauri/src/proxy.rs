@@ -356,17 +356,47 @@ pub fn theme_set(theme_id: String) -> Result<ThemeStatus, String> {
     Ok(theme_status())
 }
 
+const CHROME_CSS: &str = r#"
+
+/* ============================================================
+ * [壳强制·品牌区] 内嵌页左上 logo / 名字 / 徽标
+ * 标题与 icon 改由壳顶栏显示，这里一律藏掉。
+ * ============================================================ */
+html [class*="_brand_"],
+html [class*="_brandMark_"],
+html [class*="_brandName_"],
+html [class*="_brandBadge_"] {
+  display: none !important;
+}
+
+/* ============================================================
+ * [壳强制·新会话] 侧栏「新会话」按钮
+ * 主题里即便给过样式，这里仍强制隐藏。
+ * ============================================================ */
+html [class*="_newSession_"] {
+  display: none !important;
+}
+"#;
+
 fn theme_css() -> String {
     let _ = ensure_themes();
     let id = selected_id(&theme_list());
-    if let Some(path) = theme_file(&id) {
+    let base = if let Some(path) = theme_file(&id) {
         if let Ok(text) = std::fs::read_to_string(path) {
             if !text.trim().is_empty() {
-                return text;
+                text
+            } else {
+                include_str!("../../themes/animal-crossing.css").to_string()
             }
+        } else {
+            include_str!("../../themes/animal-crossing.css").to_string()
         }
-    }
-    include_str!("../../themes/animal-crossing.css").to_string()
+    } else {
+        include_str!("../../themes/animal-crossing.css").to_string()
+    };
+    let mut out = base;
+    out.push_str(CHROME_CSS);
+    out
 }
 
 fn theme_list() -> Vec<ThemeItem> {

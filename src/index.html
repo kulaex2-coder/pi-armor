@@ -10,11 +10,14 @@
         ? "dark"
         : "light";
     </script>
-    <script type="module" src="/main.js?v=11"></script>
+    <script type="module" src="/main.js?v=14"></script>
   </head>
   <body>
     <header class="topbar">
-      <div id="drag" class="topbar__drag">Pi Armor</div>
+      <div id="drag" class="topbar__drag">
+        <img class="topbar__icon" src="/app-icon.png" alt="" width="18" height="18" draggable="false" />
+        <span id="drag-title" class="topbar__title">Pi Armor</span>
+      </div>
       <div class="topbar__controls">
         <button id="settings" class="topbar__btn" type="button" title="配置" aria-label="配置" aria-pressed="false">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10.6 3.1V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.86 1 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
@@ -37,7 +40,9 @@
         <div class="boot__card">
           <h1 id="boot-name">Pi Armor</h1>
           <p id="boot-version" class="boot__version">版本</p>
-          <p id="boot-message" class="boot__message" role="status">正在检测启动参数…</p>
+          <p id="boot-message" class="boot__message" role="status">正在检测依赖…</p>
+          <ul id="boot-deps" class="boot__deps" aria-label="依赖检测"></ul>
+          <button id="boot-install" class="boot__install" type="button" hidden>安装缺失依赖</button>
           <dl id="boot-params"></dl>
         </div>
       </section>

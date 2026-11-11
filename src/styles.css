@@ -1,3 +1,15 @@
+/* ============================================================
+ * Pi Armor 壳样式（不是内嵌 Web UI 主题）
+ * ------------------------------------------------------------
+ * 分区：
+ *   [令牌] 颜色 / 间距 / 字体
+ *   [顶栏] 拖动区 icon+标题、右侧窗口按钮
+ *   [配置页] 侧栏导航、主区表单、底栏
+ *   [主面板] iframe / 启动检测页
+ * 内嵌页显示改动请去 themes/*.css，不要写进本文件。
+ * ============================================================ */
+
+/* --- [令牌] 亮色默认 --- */
 :root {
   --topbar-height: 44px;
   --space-2: 8px;
@@ -21,6 +33,7 @@
   --accent-invert: #ffffff;
 }
 
+/* --- [令牌] 暗色覆盖 --- */
 html[data-appearance="dark"] {
   --bg-base: #0a0a0a;
   --bg-panel: #141414;
@@ -36,6 +49,7 @@ html[data-appearance="dark"] {
   --accent-invert: #0a0a0a;
 }
 
+/* --- [布局] 整窗纵向：顶栏 + 主区 --- */
 html,
 body {
   height: 100%;
@@ -51,6 +65,7 @@ body {
   overflow: hidden;
 }
 
+/* --- [顶栏] 无边框窗口标题条 --- */
 .topbar {
   display: flex;
   align-items: center;
@@ -62,15 +77,33 @@ body {
   user-select: none;
 }
 
+/* --- [顶栏·拖动区] 左侧 icon + 软件标题 --- */
 .topbar__drag {
   flex: 1;
   align-self: stretch;
   display: flex;
   align-items: center;
+  gap: 8px;
   min-width: 0;
   color: var(--text-secondary);
 }
 
+.topbar__icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.topbar__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: var(--font-weight-medium);
+}
+
+/* --- [顶栏·按钮区] 配置 / 启停 / 最小化 / 最大化 / 关闭 --- */
 .topbar__controls {
   display: flex;
   align-items: stretch;
@@ -111,6 +144,7 @@ body {
   cursor: default;
 }
 
+/* --- [配置页] 全屏覆盖主面板 --- */
 .settings-page {
   flex: 1;
   min-height: 0;
@@ -132,6 +166,7 @@ html[data-appearance="dark"] .settings-page {
   display: none !important;
 }
 
+/* --- [配置页·侧栏] 分类导航 --- */
 .settings-side {
   width: 196px;
   flex-shrink: 0;
@@ -179,6 +214,7 @@ html[data-appearance="dark"] .settings-page {
   border-color: var(--accent-ink);
 }
 
+/* --- [配置页·主区] 表单舞台 --- */
 .settings-stage {
   flex: 1;
   min-width: 0;
@@ -322,6 +358,7 @@ html[data-appearance="dark"] .settings-page {
   font-size: 12px;
 }
 
+/* --- [配置页·底栏] 返回 / 刷新 / 提示 --- */
 .settings-foot {
   display: flex;
   align-items: center;
@@ -373,6 +410,7 @@ body.settings-open #panel-web {
   background: #c50f1e;
 }
 
+/* --- [主面板] 启动检测页 + 内嵌 iframe 叠层 --- */
 #panel-web {
   position: relative;
   flex: 1;
@@ -402,6 +440,7 @@ body.settings-open #panel-web {
   z-index: 0;
 }
 
+/* --- [启动页] 依赖检测卡片 --- */
 .boot {
   height: 100%;
   display: flex;
@@ -427,6 +466,89 @@ body.settings-open #panel-web {
   color: var(--text-secondary);
 }
 
+.boot__version {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* --- [启动页·依赖列表] Node / Pi / Web UI 状态行 --- */
+.boot__deps {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.boot__deps li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px 10px;
+  align-items: start;
+  padding: 10px 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  background: var(--bg-panel);
+}
+
+.boot__deps .mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.boot__deps li.ok .mark {
+  background: #1f8f4e;
+  color: #fff;
+}
+
+.boot__deps li.bad .mark {
+  background: #c23b22;
+  color: #fff;
+}
+
+.boot__deps strong {
+  display: block;
+  font-size: 13px;
+}
+
+.boot__deps span {
+  display: block;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  word-break: break-all;
+}
+
+/* --- [启动页·安装按钮] 确认后才装缺失依赖 --- */
+.boot__install {
+  margin-top: 14px;
+  border: 2px solid var(--border-default);
+  border-radius: 10px;
+  background: var(--accent-ink);
+  color: var(--accent-invert);
+  padding: 9px 14px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boot__install:hover {
+  filter: brightness(1.05);
+}
+
+.boot__install:disabled {
+  opacity: 0.55;
+  cursor: default;
+  filter: none;
+}
+
 .boot dl {
   margin: 18px 0 0;
 }
@@ -441,6 +563,8 @@ body.settings-open #panel-web {
   word-break: break-all;
 }
 
+
+/* --- [主面板·iframe] 内嵌 pi-web-simple --- */
 iframe {
   width: 100%;
   height: 100%;

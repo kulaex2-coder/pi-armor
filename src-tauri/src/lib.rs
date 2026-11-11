@@ -1,4 +1,5 @@
 mod content;
+mod deps;
 mod extensions;
 mod launcher;
 mod proxy;
@@ -26,6 +27,16 @@ fn list_extensions() -> Vec<extensions::ExtensionInfo> {
 #[tauri::command]
 fn launch_info() -> launcher::LaunchInfo {
     launcher::info()
+}
+
+#[tauri::command]
+fn deps_status() -> deps::DepsStatus {
+    deps::status()
+}
+
+#[tauri::command]
+fn deps_install() -> Result<deps::DepsInstallResult, String> {
+    deps::install_missing()
 }
 
 #[tauri::command]
@@ -130,6 +141,8 @@ pub fn run() {
             stop_web_ui,
             list_extensions,
             launch_info,
+            deps_status,
+            deps_install,
             web_appearance,
             web_settings,
             set_browser_notifications,
